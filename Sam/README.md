@@ -5,4 +5,3 @@ This program is designed to just place ships on the 10x10 2DArray. In its curren
 Ships are placed at the top-leftmost corner first, and their remaining tiles are placed after, either going down or right. This is done by changing the index with for loops going down or right to get to the next tile. This happens until the ship size has been reached.
 
 It was initially coded with Jupyter Notebook, but it can still function without it.
-
