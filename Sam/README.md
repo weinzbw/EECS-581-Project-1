@@ -1,5 +1,4 @@
-
-# Ship Placement
+# Ship Placement Documentation
 
 This program is designed to just place ships on the 10x10 2DArray. In its current version, it creates a temporary 10x10 blank array consisting of 0's, but it may have to be changed to work with the rest of the project.
 
