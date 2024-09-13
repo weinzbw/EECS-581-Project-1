@@ -14,6 +14,10 @@ def is_valid_ship_placement(row, col, board):
         return board[row][col] == 0
     return False
 
+
+
+
+
 def is_valid_shot(row, col, opp_board):
     """
     check if the given space is a valid shot.
@@ -24,8 +28,8 @@ def is_valid_shot(row, col, opp_board):
     opp_board (list of lists) - the current game board holding the opponent's ship placements.
     return - true if valid, false otherwise.
     """
-    # Check bounds and if the space has a ship placement (1)
+    # Check bounds
     if 0 <= row < len(opp_board) and 0 <= col < len(opp_board[0]):
-        # return true if the space is occupied (1), otherwise false
-        return opp_board[row][col] == 1
+        # return true if shot is in bounds, else false
+        return True
     return False
