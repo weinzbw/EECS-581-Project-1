@@ -11,7 +11,7 @@
 # Method called for the player that is shot at
 def shot(player, x, y):
     # Checks if the square is valid, else it raises IndexError
-    if isValid(x, y):
+    if is_valid_shot(x, y):
         # Saves the data of the square
         square = player.ships[x][y]
         # If the square is empty, it is a miss
