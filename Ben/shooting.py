@@ -6,33 +6,33 @@
 # Outputs: A string that is either "miss" "hit" "sunk" or "all sunk"
 # Author: Ben Weinzirl
 # Creation Date: 9/12/24
-# Current Time Spent: 38 minutes
+# Current Time Spent: 48 minutes
 
-def shot(column, row):
+def shot(P1, P2, column, row):
     if isValid(column, row):
-        square = self.ships[column][row]
+        square = P2.ships[column][row]
         if square == 0:
-            self.ships[column][row] = "M"
+            P2.ships[column][row] = "M"
             return "miss"
         elif square == 'X' or 'S' or "M":
             raise IndexError("Index picked before")
         else:
             if isSunk(square):
                 if isAllSunk(self.ships):
-                    self.ships[column][row] = "S"
+                    P2.ships[column][row] = "S"
                     return "all sunk"
                 else:
-                    self.ships[column][row] = "S"
+                    P2.ships[column][row] = "S"
                     return "sunk"
             else:
-                self.ships[column][row] = "X"
+                P2.ships[column][row] = "X"
                 return "hit"
     else:
         raise IndexError("Index is not on the board")
     
-def isSunk(data):
+def isSunk(player, data):
     counter = 0
-    for column in self.ships:
+    for column in player.ships:
         for row in column:
             if row == data:
                 counter += 1
