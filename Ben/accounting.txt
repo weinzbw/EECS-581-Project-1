@@ -1,1 +1,2 @@
 9/12 11:33am - 12:10pm Created branch and wrote simple program for shooting
+9/13 10:24am - 10:34am Updated shooting.py to accommodate for a Game class
