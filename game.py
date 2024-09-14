@@ -3,15 +3,21 @@
 # time spent: m
 
 from player import Player
+import validifier as v
 
 class Game:
-    def __init__(self):
-        num = input("Enter number of starting ships: ") # add err handling later
-        P1, P2 = Player(num)
+    def __init__(self, num: int):
+        self.P1, self.P2 = Player(num)
         
-    def shot(player, x, y):
+    def get_P1(self):
+        return self.P1
+    
+    def get_P2(self):
+        return self.P2
+        
+    def shot(player, x, y): # player = player being shot AT
     # Checks if the square is valid, else it raises IndexError
-        if is_valid_shot(x, y):
+        if v.is_valid_shot(x, y):
             # Saves the data of the square
             square = player.ships[x][y]
             # If the square is empty, it is a miss
@@ -24,9 +30,9 @@ class Game:
             # Otherwise, it is a hit
             else:
                 # Checks if the ship is sunk
-                if isSunk(player, square):
+                if player.is_sunk(square):
                     # Checks if all ships are sunk
-                    if isAllSunk(player.ships):
+                    if player.is_all_sunk():
                         player.ships[x][y] = "S"
                         return "all sunk"
                     else:
