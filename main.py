@@ -11,10 +11,8 @@ def main():
     P1 = G.get_P1()
     P2 = G.get_P2()
     
-    order = [P1, P2]
+    order = [P1,P2]
     
     while game_on:
-        
-        for player in order:
-            if player == P1:
-                print("Player 1's turn.")
+        for p in order:
+            pass

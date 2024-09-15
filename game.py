@@ -23,7 +23,7 @@ class Game:
             # If the square is empty, it is a miss
             if square == 0:
                 player.ships[x][y] = "M"
-                return "miss"
+                return "missed!"
             # If the sqaure has been hit before, raise IndexError
             elif square == 'X' or 'S' or "M":
                 raise IndexError("Index picked before")
@@ -34,13 +34,18 @@ class Game:
                     # Checks if all ships are sunk
                     if player.is_all_sunk():
                         player.ships[x][y] = "S"
-                        return "all sunk"
+                        return "Sunk all your opponent's ships!"
                     else:
                         player.ships[x][y] = "S"
-                        return "sunk"
+                        return "You sunk a ship!"
                 else:
                     player.ships[x][y] = "X"
-                    return "hit"
+                    return "You hit a ship!"
         else:
             raise IndexError("Index is not on the board")
+    
+    def turn(self,player,target):
+        x = input("Type the X-coordinate (A-J) of your target:")
+        y = input("Type the Y-coordinate (1-10) of your target: ")
+        self.shot(target,x,y)
         
