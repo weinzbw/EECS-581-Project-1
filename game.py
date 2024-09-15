@@ -8,7 +8,8 @@ import validifier as v
 
 class Game:
     def __init__(self, num: int):
-        self.P1, self.P2 = Player(num)
+        self.P1 = Player(num)
+        self.P2 = Player(num)
         
     def get_P1(self):
         return self.P1
@@ -16,11 +17,12 @@ class Game:
     def get_P2(self):
         return self.P2
     
-    def place_ship(self, player, ship_size: int, orientation: Literal['horizontal', 'vertical']):
+    def place_ship(self, player, ship_size: int):
         def letter_to_index(letter: str) -> int:
             return ord(letter.upper()) - ord('A')
     
         position = input("Input the ship's top-leftmost position (e.g., A6): ").strip()
+        orientation = input("Input the orientation of the ship (horizontal or vertical): ").strip().lower()
     
         row = letter_to_index(position[0])  # converts characters to numbers
         col = int(position[1:]) - 1         # subtracts 1 due to 0-indexed
@@ -40,52 +42,57 @@ class Game:
                     player.ships[row + i][col] = ship_size
         else:
             print("Invalid ship placement, try again")
-            self.place_ship(player, ship_size, orientation)
+            self.place_ship(player, ship_size)
 
         
-    def shot(self, player, x, y): # player = player being shot AT
+    def shot(self, player, target, y, x): # player = player being shot AT (x and y are swapped due to 2D array)
     # Checks if the square is valid, else it raises IndexError
         if v.is_valid_shot(x, y):
             # Saves the data of the square
-            square = player.ships[x][y]
+            square = target.ships[x][y]
             # If the square is empty, it is a miss
             if square == 0:
-                player.ships[x][y] = "M"
+                player.shots[x][y] = "M"
                 return "missed!"
             # If the square has been hit before, raise IndexError
-            elif square == 'X' or 'S' or "M":
+            elif square == 'X' or square == 'M' or square == "S":
                 raise IndexError("Index picked before")
             # Otherwise, it is a hit
             else:
                 # Checks if the ship is sunk
-                if player.is_sunk(square):
-                    player.num_ships -= 1
+                if target.is_sunk(square):
+                    target.num_ships -= 1
                     # Checks if all ships are sunk
-                    if player.is_all_sunk():
-                        player.ships[x][y] = "S"
+                    if target.is_all_sunk():
+                        player.shots[x][y] = "S"
                         return "Sunk all your opponent's ships!"
                     else:
-                        player.ships[x][y] = "S"
+                        player.shots[x][y] = "S"
                         return "You sunk a ship!"
                 else:
-                    player.ships[x][y] = "X"
+                    player.shots[x][y] = "X"
                     return "You hit a ship!"
         else:
             raise IndexError("Index is not on the board")
     
     def turn(self,player,target):
-        x = input("Type the X-coordinate (A-J) of your target:")
-        y = int(input("Type the Y-coordinate (1-10) of your target: "))
-        # Changes the string to an integer
-        x = ord(x.upper()) - ord('A')
+        try:
+            x = int(input("Type the X-coordinate (1-10) of your target:")) - 1
+            y = input("Type the Y-coordinate (A-J) of your target: ")
+            # Changes the string to an integer
+            y = ord(y.upper()) - ord('A')
+        except:
+            print("Please pay attention to coordinate input formatting")
+            self.turn(player, target)
         #shot() method can raise an error with invalid input
         try:
-            shot = self.shot(target,x,y)
+            shot = self.shot(player, target, x, y)
             print(shot)
             # Takes another turn if it is a hit
-            if shot == "You hit a ship!" or "You sunk a ship!":
-                player.print_board(player.shots)
+            if shot == "You hit a ship!" or shot == "You sunk a ship!":
+                player.print_board(0)
                 self.turn(player, target)
         # Gives another chance to input proper coords if an error is raised
         except:
-            self.turn(player.target)
+             print("Invalid shot, try again")
+             self.turn(player, target)
