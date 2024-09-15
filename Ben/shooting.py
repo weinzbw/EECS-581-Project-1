@@ -65,7 +65,7 @@ def isAllSunk(board):
     counter = 0
     # Iterates through every square on ship board
     for x in board:
-        for y in column:
+        for y in x:
             if y == 1 or 2 or 3 or 4 or 5:
                 counter += 1
     # If there is only one instance of any ship, then every ship is sunk
