@@ -13,6 +13,10 @@ def main():
     
     order = [P1,P2]
     
-    while game_on:
+    while game_on is not P1.is_all_ships_sunk and not P2.is_all_ships_sunk:
+        player = 1
         for p in order:
-            pass
+            print(f'Player {player}'s turn')
+            p.print_board(p.shots)
+            G.turn(p, order[order.index(p)-1])
+            player += 1
