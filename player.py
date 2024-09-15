@@ -58,6 +58,11 @@ class Player:
         else:
             return self.shots 
         
-    '''code to print boards goes here?'''
-    
+    def print_boards(self, num):
+        if int(num) == 1:
+            for row in self.ships:
+                print(' '.join(map(str, row)))
+        else:
+            for row in self.shots:
+                print(' '.join(map(str, row)))
     
