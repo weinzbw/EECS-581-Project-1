@@ -30,3 +30,9 @@ def is_valid_ship_placement(row, col, board, ship_size, orientation):
                 return False
 
     return True
+
+def is_valid_shot(row, col):
+    if row<=10 and col<=10:
+        return True
+    else:
+        return False

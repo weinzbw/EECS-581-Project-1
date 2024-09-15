@@ -16,7 +16,11 @@ def main():
     while game_on is not P1.is_all_ships_sunk and not P2.is_all_ships_sunk:
         player = 1
         for p in order:
-            print(f'Player {player}'s turn')
+            print(f'Player {player}s turn')
             p.print_board(p.shots)
             G.turn(p, order[order.index(p)-1])
             player += 1
+    
+    print("YOU WIN!")
+
+main()

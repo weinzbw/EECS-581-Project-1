@@ -13,7 +13,7 @@ class Player:
         self.ships, self.shots = np.zeros((10,10), dtype=int)
         
         '''ship-placing code written by Sam'''
-        
+    
     def place_ship(self, ship_size: int, orientation: Literal['horizontal', 'vertical']) -> List:
         def letter_to_index(letter: str) -> int:
             return ord(letter.upper()) - ord('A')
@@ -58,11 +58,19 @@ class Player:
         else:
             return self.shots 
         
-    def print_boards(self, num):
+    def print_boards(self, num): # add self
+        coords = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+        i = 0
         if int(num) == 1:
-            for row in self.ships:
-                print(' '.join(map(str, row)))
+            print('    1  2  3  4  5  6  7  8  9  10\n')
+            for row in self.ships:  # change to self.ships
+                print(coords[i], ' ', '  '.join(map(str, row)), '\n')
+                i += 1
         else:
-            for row in self.shots:
-                print(' '.join(map(str, row)))
+            print('    1  2  3  4  5  6  7  8  9  10\n')
+            for row in self.shots: # change to self.shots
+                print(coords[i], ' ', '  '.join(map(str, row)), '\n')
+                i += 1
+        print('\n----------------------------------\n')
+        
     
