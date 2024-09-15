@@ -1,4 +1,4 @@
 9/12 11:33am - 12:10pm Created branch and wrote simple program for shooting
 9/13 10:24am - 10:34am Updated shooting.py to accommodate for a Game class
 9/13 2:53pm - 3:23pm Updated shooting.py to properly accomadate a Game class (further implementation will need to be done after classes are initialized by others)
-9/15 2:32pm - Working with Del to merge work and create turn orders
+9/15 2:32pm - 3:33pm Working with Del to merge work and create turn orders
