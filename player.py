@@ -13,8 +13,10 @@ class Player:
         self.shots = [[0 for _ in range(10)] for _ in range(10)]
     
     def is_sunk(self, ship_size: int):
-        x = self.ships.count(ship_size)
-        if x == 0:
+        x = 0
+        for line in self.ships:
+            x += line.count(ship_size)
+        if x == 1:
             return True
         else:
             return False
