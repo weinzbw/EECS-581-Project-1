@@ -11,7 +11,12 @@ from game import Game
 def main():
     game_on = True
     print("###  Welcome to Battleship!  ###")
-    num = int(input("Enter number of ships (min = 1, max = 5): "))
+    try:
+        num = int(input("Enter number of ships (min = 1, max = 5): "))
+    except:
+        print("num must be an integer")
+        return 0
+    
     if num < 1 or num > 5:
         print("You can only have 1 through 5 ships")
         main()
