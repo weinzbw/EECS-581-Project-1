@@ -29,10 +29,13 @@ class Game:
     
         position = input("Input the ship's top-leftmost position (e.g., A6): ").strip()
         orientation = input("Input the orientation of the ship (horizontal or vertical): ").strip().lower()
-    
-        row = letter_to_index(position[0])  # converts characters to numbers
-        col = int(position[1:]) - 1         # subtracts 1 due to 0-indexed
-
+        
+        try:
+            row = letter_to_index(position[0])  # converts characters to numbers
+            col = int(position[1:]) - 1         # subtracts 1 due to 0-indexed
+        except:
+            print("Invalid coordinate format. Please try again")
+            self.place_ship(player, ship_size)
         try:
             if v.is_valid_ship_placement(row, col, player.ships, ship_size, orientation):
                 # the temp_board has the ships' sizes as identifiers of where they are placed
