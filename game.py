@@ -27,21 +27,29 @@ class Game:
         row = letter_to_index(position[0])  # converts characters to numbers
         col = int(position[1:]) - 1         # subtracts 1 due to 0-indexed
 
-        if v.is_valid_ship_placement(row, col, player.ships, ship_size, orientation):
-            # the temp_board has the ships' sizes as identifiers of where they are placed
-            if orientation == 'horizontal':
-            # places ship horizontally by changing line of cells
-            # increases column index for length of ship
-                for i in range(ship_size):
-                    player.ships[row][col + i] = ship_size 
+        try:
+            if v.is_valid_ship_placement(row, col, player.ships, ship_size, orientation):
+                # the temp_board has the ships' sizes as identifiers of where they are placed
+                if orientation == 'horizontal':
+                # places ship horizontally by changing line of cells
+                # increases column index for length of ship
+                    for i in range(ship_size):
+                        player.ships[row][col + i] = ship_size 
         
-            elif orientation == 'vertical':
-                # places ship vertically by changing line of cells
-                # increases row index for length of ship
-                for i in range(ship_size):
-                    player.ships[row + i][col] = ship_size
-        else:
-            print("Invalid ship placement, try again")
+                elif orientation == 'vertical':
+                    # places ship vertically by changing line of cells
+                    # increases row index for length of ship
+                    for i in range(ship_size):
+                        player.ships[row + i][col] = ship_size
+            
+                else:
+                    print("Please check spelling of horizontal or vertical and try again")
+                    self.place_ship(player, ship_size)
+            else:
+                print("Invalid ship placement, try again")
+                self.place_ship(player, ship_size)
+        except:
+            print("That format is invalid, please try again")
             self.place_ship(player, ship_size)
 
         
@@ -55,7 +63,7 @@ class Game:
                 player.shots[x][y] = "M"
                 return "missed!"
             # If the square has been hit before, raise IndexError
-            elif square == 'X' or square == 'M' or square == "S":
+            elif player.shots[x][y] == 'X' or player.shots[x][y] == 'M' or player.shots[x][y] == "S":
                 raise IndexError("Index picked before")
             # Otherwise, it is a hit
             else:
@@ -71,16 +79,16 @@ class Game:
                         return "You sunk a ship!"
                 else:
                     player.shots[x][y] = "X"
+                    target.ships[x][y] = "X"
                     return "You hit a ship!"
         else:
             raise IndexError("Index is not on the board")
     
     def turn(self,player,target):
         try:
-            x = int(input("Type the X-coordinate (1-10) of your target:")) - 1
-            y = input("Type the Y-coordinate (A-J) of your target: ")
-            # Changes the string to an integer
-            y = ord(y.upper()) - ord('A')
+            position = input("Input the square you want to shoot (e.g., A6): ")
+            y = ord(position[0].upper()) - ord('A')  # converts characters to numbers
+            x = int(position[1:]) - 1         # subtracts 1 due to 0-indexed
         except:
             print("Please pay attention to coordinate input formatting")
             self.turn(player, target)
