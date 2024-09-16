@@ -3,8 +3,10 @@
 # This creates a 2-player battleship, letting players input coordinates to both place and sink ships.
 # Inputs: # of ships, coordinates
 # Outputs: game states via a 2D Array
-# Author: Ben Weinzirl
+# Author: Del Endecott, Ben Weinzirl
 # Creation Date: 9/15/24
+
+from game import Game
 
 def main():
     game_on = True
