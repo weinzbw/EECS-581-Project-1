@@ -1,6 +1,11 @@
-# temp header
-# class handling player data 
-# time spent: 20m
+# Program: player
+# Description: This program is utilized by the game file in order to run Battleship.
+# It focused on creating a lot of needed values for the game file, like the boards of ships and shots.
+# It also checks the state of the game, with is_sunk, and is_all_sunk, as well as printing the board.
+# Inputs: num_ships, ship_size, num 
+# Outputs: board of ships, board of shots, Booleans determining status of sunk states, printed board, returned board
+# Author: Del Endecott, Mick Torres
+# Creation Date: 9/11/24
 
 from typing import Literal, List
 

@@ -1,6 +1,12 @@
-# temp header
-# class handling game data and actions
-# time spent: m
+# Program: game
+# Description: This program utilizes the Player class, and the functions from validifier.
+# It brings everything together in order to run a game of Battleship.
+# The Game class manages player turns, ship placement, and shot processing.
+# It handles input validation through validifier.
+# Inputs: num, player, ship_size, row, col, ships, orientation, target, y, x, letter
+# Outputs: player, num, game states via 2D Array, messages pertaining to the changes in game states
+# Author: Del Endecott, Sam Harrison, Mick Torres
+# Creation Date: 9/11/24
 from typing import Literal, List
 
 from player import Player

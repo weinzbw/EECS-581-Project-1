@@ -1,5 +1,10 @@
-# ooga booga main file
-from game import Game
+# Program: main
+# Description: This program implements the Game and Player classes from their respective files.
+# This creates a 2-player battleship, letting players input coordinates to both place and sink ships.
+# Inputs: # of ships, coordinates
+# Outputs: game states via a 2D Array
+# Author: Ben Weinzirl
+# Creation Date: 9/15/24
 
 def main():
     game_on = True

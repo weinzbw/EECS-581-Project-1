@@ -1,3 +1,11 @@
+# Program: validifier
+# Description: This program is used by the Game class in order to validate the placement of ships.
+# It also determines the validity of shots.
+# Inputs: row, col, board, ship_size, orientation
+# Outputs: booleans, IndexError 
+# Author: Naran Bat
+# Creation Date: 9/12/24
+
 def is_valid_ship_placement(row, col, board, ship_size, orientation):
     """
     check if the given space is valid for ship placement.
